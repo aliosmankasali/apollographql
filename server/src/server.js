@@ -4,6 +4,7 @@ import cors from 'cors';
 import {dbConnection} from './model';
 import typeDefs from './graphql/typeDefs';
 import resolvers from  './graphql/resolvers';
+import context from './graphql/context'
 import 'dotenv/config';
 
 const app = express();
@@ -14,7 +15,8 @@ app.use(cors());
 
 const server = new ApolloServer({
     typeDefs,
-    resolvers
+    resolvers,
+    context
 });
 
 server.applyMiddleware({ app, path: '/grapi' })
